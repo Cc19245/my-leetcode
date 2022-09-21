@@ -1,0 +1,33 @@
+{
+	"version": "2.0.0",
+	"options": {
+		"cwd": "${workspaceFolder}/build"	// 执行下面的命令之前先执行的命令，切换工作目录
+	},
+	"tasks": [
+		{
+			"type": "shell",	// 该task是命令行的输入
+			"label": "cmake",   // 该task的名称
+			"command": "cmake", // 实际真正输入的命令
+			"args": [
+				".."
+			]
+		},
+		{
+			"type": "shell",	// 该task是命令行的输入
+			"label": "make",    // 该task的名称
+			"command": "make", // 实际真正输入的命令
+		},
+		{
+			"label": "Build",   // 该task的名称，如果进行调试的话，launch.json中的preLaunchTask名字要和这个一样
+			"dependsOrder": "sequence", 	// 该task是一个总的task，依赖下面的task，并且下面的task是按照顺序来执行
+			"dependsOn":[
+				"cmake",	// 执行顺序：先执行cmake .., 再执行make
+				"make"
+			],
+			"group": {		// 这个命令属于build组，并且是默认命令，即快捷键ctrl+shift+B执行
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+	]
+}
