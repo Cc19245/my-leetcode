@@ -66,8 +66,7 @@ public:
         {
             if(nums.at(fast_index) != val)
             {
-                nums.at(slow_index) = nums.at(fast_index);
-                slow_index++;
+                nums.at(slow_index++) = nums.at(fast_index);
             }
         }
         return slow_index;
