@@ -1,44 +1,29 @@
 #include <iostream>
 #include <vector>
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+#include <unordered_map>
 
-#include "54.hpp"
+#include "15.hpp"
 
 using namespace std;
+
 
 int main(int argc, char** argv)
 {
     Solution sol;
-    
-    vector<vector<int>> a = {{1, 2, 3}, {1, 2, 3}, {1, 2, 3}, {1, 2, 3}};
-    vector<vector<int>> b = {{1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}};
-    vector<vector<int>> c = {{1, 2, 3, 4}, {1, 2, 3, 4}};
-    vector<vector<int>> d = {{2, 5}, {8, 4}, {0, -1}};   // [[2,5],[8,4],[0,-1]]
-    vector<vector<int>> e = {{2, 8, 0}, {5, 4, -1}}; 
+    vector<int> a = {-4, -1, -1, 0, 1, 2};
 
-    vector<int> res = sol.spiralOrder(a);
-    for(auto bb:res)
-        std::cout << bb << " ";
-    std::cout << std::endl;
-
-    res = sol.spiralOrder(b);
-    for(auto bb:res)
-        std::cout << bb << " ";
-    std::cout << std::endl;
-
-    res = sol.spiralOrder(c);
-    for(auto bb:res)
-        std::cout << bb << " ";
-    std::cout << std::endl;
-
-    res = sol.spiralOrder(d);
-    for(auto bb:res)
-        std::cout << bb << " ";
-    std::cout << std::endl;
-
-    res = sol.spiralOrder(e);
-    for(auto bb:res)
-        std::cout << bb << " ";
-    std::cout << std::endl;
-
+    auto res = sol.threeSum(a);
+    // cout << res.size() << endl;
+    for(auto& nums : res)
+    {
+        cout << endl;
+        for(auto& num : nums)
+            cout << num << ' ';
+    }
+        
+        
     return 0;
 }
