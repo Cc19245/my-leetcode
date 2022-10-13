@@ -1,11 +1,11 @@
 /**
- * @file 669.hpp
+ * @file 538.hpp
  * @author your name (you@domain.com)
  * @brief 
  * @version 0.1
  * @date 2022-10-10
  * 
- * 修剪二叉搜索树，让所有节点数值都在指定区间内
+ * 给一棵二叉搜索树，返回它的累加树
  * 
  * @copyright Copyright (c) 2022
  * 
