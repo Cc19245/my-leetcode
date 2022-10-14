@@ -44,6 +44,23 @@ public:
         }
     }
 
+    // 剪枝优化
+    void backtracking(int n, int k, int start)
+    {
+        if(path.size() == k)
+        {
+            result.push_back(path);
+            return;
+        }
+
+        for(int i = start; i <= n-(k-path.size())+1; i++)
+        {
+            path.push_back(i);
+            backtracking(n, k, i+1);
+            path.pop_back();
+        }
+    }
+
     vector<vector<int>> combine(int n, int k)
     {
         backtracking(n, k, 1);  // 从1开始收集所有的可能的路径
