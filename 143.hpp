@@ -89,7 +89,7 @@ public:
     }
 
 
-     // 3.解法三：拆分链表，把链表分成前后两部分，然后把后半部分翻转，然后依次
+    // 3.解法三：拆分链表，把链表分成前后两部分，然后把后半部分翻转，然后依次
     void reorderList(ListNode *head)
     {
         if(head == nullptr || head->next == nullptr)
@@ -108,14 +108,16 @@ public:
 
         // 2.至此，pre是前一个链表的结尾，slow是后一个链表的开头
         // 注意cur2可能和cur1长度相等，也可能比cur1长度大1
-        ListNode* cur1 = head->next;
         pre->next = nullptr;   // 把前一个链表的尾巴截断，方便后面遍历
+        ListNode* cur1 = head->next;  // 注意为什么cur1从第二个开始：因为第一个一定是head，不会动的
         ListNode* cur2 = reverseList(slow);   // 后一个链表翻转
 
-        // 3.遍历开始重构链表
+        // 3.开始遍历，重构链表
         int count = 0;
         ListNode* cur = head;
-        while(cur2)
+        // 注意此时要遍历的链表：如果原链表是奇数（假设是5），则分割后前2后3，要遍历的前1后3
+        // 如果原链表是偶数（假设是4），则分割后前2后2，要遍历的前1后2。因此不管怎样都是前链表先遍历完
+        while(cur1)
         {
             if(count % 2 == 0)  // 偶数
             {
@@ -130,7 +132,17 @@ public:
             cur = cur->next;
             count++;
         }
-        cur->next = nullptr;   // 最后一个位置
+
+        // 4.处理cur2剩余的链表
+        while(cur2)
+        {
+            cur->next = cur2;
+            cur2 = cur2->next;
+            cur = cur->next;
+        }
+
+        // 最后将链表收尾
+        cur->next = nullptr;   
     }
 
     // 翻转链表
