@@ -66,4 +66,30 @@ public:
 
         return root;
     }
+
+    void traversal(Node* root)
+    {
+        if(root == nullptr)
+            return;
+        // 中
+        if(root->left)   
+            root->left->next = root->right;  // 注意完美二叉树，所以左不为空的话，右一定也不为空
+        if(root->right)  
+        {
+            if(root->next)  // 上一层有连接线的话，就可以给本层的连接线提供桥梁
+                root->right->next = root->next->left;
+            else
+                root->right->next = nullptr;
+        }
+
+        // 左右
+        traversal(root->left);
+        traversal(root->right);
+    }
+
+    Node *connect(Node *root)
+    {
+        traversal(root);
+        return root;
+    }
 };
