@@ -55,4 +55,4 @@ public:
         backtracking(0, n, chess);  // 然后开始遍历，放置皇后
         return count;   // 最后返回所有可能的结果
     }
-};
+}
